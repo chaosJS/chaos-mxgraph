@@ -3222,18 +3222,22 @@ EditorUi.prototype.refresh = function(sizeDidChange)
 	var fw = (this.format != null) ? this.formatWidth : 0;
 	this.sidebarContainer.style.top = tmp + 'px';
 	this.sidebarContainer.style.width = effHsplitPosition + 'px';
+  this.addImgContainer.style.top = tmp + 'px'
+  this.addImgContainer.style.width = effHsplitPosition + 'px'
+  this.addDocContainer.style.top = tmp + 'px'
+  this.addDocContainer.style.width = effHsplitPosition + 'px'
 	this.formatContainer.style.top = tmp + 'px';
 	this.formatContainer.style.width = fw + 'px';
 	this.formatContainer.style.display = (this.format != null) ? '' : 'none';
 	
 	var diagContOffset = this.getDiagramContainerOffset();
 	var contLeft = (this.hsplit.parentNode != null) ? (effHsplitPosition + this.splitSize) : 0;
-	this.diagramContainer.style.left =  (contLeft + diagContOffset.x) + 'px';
+	this.diagramContainer.style.left =  (contLeft + diagContOffset.x) + 50 + 'px';
 	this.diagramContainer.style.top = (tmp + diagContOffset.y) + 'px';
 	this.footerContainer.style.height = this.footerHeight + 'px';
 	this.hsplit.style.top = this.sidebarContainer.style.top;
 	this.hsplit.style.bottom = (this.footerHeight + off) + 'px';
-	this.hsplit.style.left = effHsplitPosition + 'px';
+	this.hsplit.style.left = effHsplitPosition + 50 + 'px';
 	this.footerContainer.style.display = (this.footerHeight == 0) ? 'none' : '';
 	
 	if (this.tabContainer != null)
@@ -3278,7 +3282,8 @@ EditorUi.prototype.refresh = function(sizeDidChange)
 			this.tabContainer.style.right = this.diagramContainer.style.right;
 			th = this.tabContainer.clientHeight;
 		}
-		
+		this.addImgContainer.style.bottom = this.footerHeight + sidebarFooterHeight + off + 'px'
+		this.addDocContainer.style.bottom = this.footerHeight + sidebarFooterHeight + off + 'px'
 		this.sidebarContainer.style.bottom = (this.footerHeight + sidebarFooterHeight + off) + 'px';
 		this.formatContainer.style.bottom = (this.footerHeight + off) + 'px';
 		this.diagramContainer.style.bottom = (this.footerHeight + off + th) + 'px';
@@ -3306,6 +3311,11 @@ EditorUi.prototype.createDivs = function()
 	this.menubarContainer = this.createDiv('geMenubarContainer');
 	this.toolbarContainer = this.createDiv('geToolbarContainer');
 	this.sidebarContainer = this.createDiv('geSidebarContainer');
+	//  获取对侧边导航的引用
+	this.sideMenuContainer = this.createDiv('geSideMenuContainer')
+	// 获取 对应容器的 container
+	this.addImgContainer = this.createDiv('geAddImgContainer')
+  this.addDocContainer = this.createDiv('geAddDocContainer')
 	this.formatContainer = this.createDiv('geSidebarContainer geFormatContainer');
 	this.diagramContainer = this.createDiv('geDiagramContainer');
 	this.footerContainer = this.createDiv('geFooterContainer');
@@ -3318,7 +3328,11 @@ EditorUi.prototype.createDivs = function()
 	this.menubarContainer.style.right = '0px';
 	this.toolbarContainer.style.left = '0px';
 	this.toolbarContainer.style.right = '0px';
-	this.sidebarContainer.style.left = '0px';
+	this.sidebarContainer.style.left = '50px';
+  this.sideMenuContainer.style.left = '0px'
+	this.sideMenuContainer.style.top = '69px'
+  this.addImgContainer.style.left = '50px'
+  this.addDocContainer.style.left = '50px'
 	this.formatContainer.style.right = '0px';
 	this.formatContainer.style.zIndex = '1';
 	this.diagramContainer.style.right = ((this.format != null) ? this.formatWidth : 0) + 'px';
@@ -3390,7 +3404,16 @@ EditorUi.prototype.createUi = function()
 	{
 		this.container.appendChild(this.sidebarContainer);
 	}
-	
+	// 生成侧边导航到主UI中
+	this.createSideMenu(this.sideMenuContainer)
+	this.container.appendChild(this.sideMenuContainer)
+	// 生成不同菜单对应的容器到主UI中
+	this.createAddImgContainer(this.addImgContainer)
+  this.container.appendChild(this.addImgContainer)
+
+  this.createAddDocContainer(this.addDocContainer)
+  this.container.appendChild(this.addDocContainer)
+
 	// Creates the format sidebar
 	this.format = (this.editor.chromeless || !this.formatEnabled) ? null : this.createFormat(this.formatContainer);
 	
@@ -3482,7 +3505,18 @@ EditorUi.prototype.createSidebar = function(container)
 {
 	return new Sidebar(this, container);
 };
+// 创建侧边菜单
+EditorUi.prototype.createSideMenu = function(container) {
+  return new SideNav(this, container)
+}
+// 分别创建不同的菜单对应的容器
+EditorUi.prototype.createAddImgContainer = function(container) {
+  return new AddImg(this, container)
+}
 
+EditorUi.prototype.createAddDocContainer = function(container) {
+  return new AddDoc(this, container)
+}
 /**
  * Creates a new sidebar for the given container.
  */

@@ -344,6 +344,40 @@ div.mxWindow .geButton {
 	position:absolute;
 	overflow:auto;
 }
+.geAddImgContainer {
+  background: #fbfbfb;
+  overflow: hidden;
+  position: absolute;
+  overflow: auto;
+  display: none;
+}
+.geAddDocContainer {
+  background: #fbfbfb;
+  overflow: hidden;
+  position: absolute;
+  overflow: auto;
+  display: none;
+}
+.geSideMenuContainer {
+  position: absolute;
+  overflow: auto;
+  bottom: 0;
+}
+.geSideMenuContainer > .navMenu {
+  list-style: none;
+  padding: 20px 0;
+  margin: 0;
+}
+.geSideMenuContainer > .navMenu > li {
+  padding: 10px 0;
+  text-align: center;
+  color: #627281;
+
+  cursor: pointer;
+}
+.geSideMenuContainer > .navMenu > li.is-active {
+  color: #fff;
+}
 .geTabContainer {
 	border-top:1px solid #e5e5e5;
 	background-color:#f1f3f4;
