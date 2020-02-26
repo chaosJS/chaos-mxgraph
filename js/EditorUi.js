@@ -3230,6 +3230,14 @@ EditorUi.prototype.refresh = function(sizeDidChange)
 	this.formatContainer.style.width = fw + 'px';
 	this.formatContainer.style.display = (this.format != null) ? '' : 'none';
 	
+	this.formatStyleContainer.style.top = tmp + 'px';
+	this.formatStyleContainer.style.width = fw + 'px';
+	this.formatStyleContainer.style.display = (this.format != null) ? '' : 'none';
+
+	this.formatCommentContainer.style.top = tmp + 'px';
+	this.formatCommentContainer.style.width = fw + 'px';
+	this.formatCommentContainer.style.display = (this.format != null) ? '' : 'none';
+
 	var diagContOffset = this.getDiagramContainerOffset();
 	var contLeft = (this.hsplit.parentNode != null) ? (effHsplitPosition + this.splitSize) : 0;
 	this.diagramContainer.style.left =  (contLeft + diagContOffset.x) + 50 + 'px';
@@ -3286,6 +3294,8 @@ EditorUi.prototype.refresh = function(sizeDidChange)
 		this.addDocContainer.style.bottom = this.footerHeight + sidebarFooterHeight + off + 'px'
 		this.sidebarContainer.style.bottom = (this.footerHeight + sidebarFooterHeight + off) + 'px';
 		this.formatContainer.style.bottom = (this.footerHeight + off) + 'px';
+		this.formatStyleContainer.style.bottom = (this.footerHeight + off) + 'px';
+		this.formatCommentContainer.style.bottom = (this.footerHeight + off) + 'px';
 		this.diagramContainer.style.bottom = (this.footerHeight + off + th) + 'px';
 	}
 	
@@ -3313,9 +3323,15 @@ EditorUi.prototype.createDivs = function()
 	this.sidebarContainer = this.createDiv('geSidebarContainer');
 	//  获取对侧边导航的引用
 	this.sideMenuContainer = this.createDiv('geSideMenuContainer')
+
 	// 获取 对应容器的 container
 	this.addImgContainer = this.createDiv('geAddImgContainer')
-  this.addDocContainer = this.createDiv('geAddDocContainer')
+	this.addDocContainer = this.createDiv('geAddDocContainer')
+	//  获取对右侧边导航的引用
+	this.rightSideMenuContainer = this.createDiv('geRightSideMenuContainer')
+	// 获取 右侧对应容器的 container
+	this.formatStyleContainer = this.createDiv('geFormatStyleContainer')
+	this.formatCommentContainer = this.createDiv('geFormatCommentContainer')	
 	this.formatContainer = this.createDiv('geSidebarContainer geFormatContainer');
 	this.diagramContainer = this.createDiv('geDiagramContainer');
 	this.footerContainer = this.createDiv('geFooterContainer');
@@ -3331,8 +3347,14 @@ EditorUi.prototype.createDivs = function()
 	this.sidebarContainer.style.left = '50px';
   this.sideMenuContainer.style.left = '0px'
 	this.sideMenuContainer.style.top = '69px'
+	this.rightSideMenuContainer.style.right = '240px'
+	this.rightSideMenuContainer.style.top = '69px'
   this.addImgContainer.style.left = '50px'
-  this.addDocContainer.style.left = '50px'
+	this.addDocContainer.style.left = '50px'
+	this.formatStyleContainer.style.right = '0px';
+	this.formatStyleContainer.style.zIndex = '1';
+	this.formatCommentContainer.style.right = '0px';
+	this.formatCommentContainer.style.zIndex = '1';
 	this.formatContainer.style.right = '0px';
 	this.formatContainer.style.zIndex = '1';
 	this.diagramContainer.style.right = ((this.format != null) ? this.formatWidth : 0) + 'px';
@@ -3413,7 +3435,14 @@ EditorUi.prototype.createUi = function()
 
   this.createAddDocContainer(this.addDocContainer)
   this.container.appendChild(this.addDocContainer)
-
+	// 生成右侧侧边导航到主UI中
+	this.createRightSideMenu(this.rightSideMenuContainer)
+	this.container.appendChild(this.rightSideMenuContainer)
+	// 
+	this.createFormatStyleContainer(this.formatStyleContainer)
+	this.container.appendChild(this.formatStyleContainer)
+	this.createFormatCommentContainer(this.formatCommentContainer)
+	this.container.appendChild(this.formatCommentContainer)
 	// Creates the format sidebar
 	this.format = (this.editor.chromeless || !this.formatEnabled) ? null : this.createFormat(this.formatContainer);
 	
@@ -3516,6 +3545,17 @@ EditorUi.prototype.createAddImgContainer = function(container) {
 
 EditorUi.prototype.createAddDocContainer = function(container) {
   return new AddDoc(this, container)
+}
+// 创建右侧侧边菜单
+EditorUi.prototype.createRightSideMenu = function(container) {
+  return new RightSideNav(this, container)
+}
+// 创建右侧侧边菜单对应的容器
+EditorUi.prototype.createFormatStyleContainer = function(container) {
+  return new FormatStyle(this, container)
+}
+EditorUi.prototype.createFormatCommentContainer = function(container) {
+  return new FormatComment(this, container)
 }
 /**
  * Creates a new sidebar for the given container.

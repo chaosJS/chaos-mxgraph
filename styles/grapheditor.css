@@ -358,6 +358,48 @@ div.mxWindow .geButton {
   overflow: auto;
   display: none;
 }
+.geFormatStyleContainer{
+	border-left: 1px solid #dadce0;
+	background: #fbfbfb;
+  overflow: hidden;
+  position: absolute;
+  overflow: auto;
+  display: none;
+}
+.geFormatCommentContainer{
+	border-left: 1px solid #dadce0;
+	background: #fbfbfb;
+  overflow: hidden;
+  position: absolute;
+  overflow: auto;
+  display: none;
+}
+.geRightSideMenuContainer{
+	position: absolute;
+  overflow: auto;
+	bottom: 0;
+	z-index: 1;
+}
+.geRightSideMenuContainer > .rightNavMenu {
+  list-style: none;
+  padding: 20px 0;
+	margin: 0;
+	border-left: 1px solid #dadce0;
+}
+.geRightSideMenuContainer > .rightNavMenu > li {
+	padding: 10px 0;
+	margin: 10px 0;
+  text-align: center;
+  color: #627281;
+	cursor: pointer;
+	border-left: 2px solid transparent;
+}
+.geRightSideMenuContainer > .rightNavMenu > li:hover {
+  color: #f6aa00;
+}
+.geRightSideMenuContainer > .rightNavMenu > li.is-active {
+	border-left: 2px solid #f6aa00;
+}
 .geSideMenuContainer {
   position: absolute;
   overflow: auto;
@@ -369,14 +411,19 @@ div.mxWindow .geButton {
   margin: 0;
 }
 .geSideMenuContainer > .navMenu > li {
-  padding: 10px 0;
+	padding: 10px 0;
+	margin: 10px 0;
   text-align: center;
   color: #627281;
-
-  cursor: pointer;
+	cursor: pointer;
+	border-left: 2px solid transparent;
+}
+.geSideMenuContainer > .navMenu > li:hover {
+  color: #f6aa00;
 }
 .geSideMenuContainer > .navMenu > li.is-active {
-  color: #fff;
+	color: #f6aa00;
+	border-left: 2px solid #f6aa00;
 }
 .geTabContainer {
 	border-top:1px solid #e5e5e5;
