@@ -54,12 +54,6 @@ RightSideNav.prototype.addSideNavMenu = function() {
   // const thisClass = this
   let formatContainerShow = true
   $(document).ready(() => {
-    $('.tooltip').tooltipster({
-      animation: 'fade',
-      delay: 200,
-      side: 'right',
-      theme: 'tooltipster-borderless'
-    })
     $('.rightNavMenu').on('click', 'li', function(event) {
       let originWidth = $('.geFormatContainer').width()
       if ($(this).hasClass('is-active')) {
