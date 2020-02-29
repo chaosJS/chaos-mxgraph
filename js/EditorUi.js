@@ -3293,6 +3293,8 @@ EditorUi.prototype.refresh = function(sizeDidChange)
 		this.addImgContainer.style.bottom = this.footerHeight + sidebarFooterHeight + off + 'px'
 		this.addDocContainer.style.bottom = this.footerHeight + sidebarFooterHeight + off + 'px'
 		this.sidebarContainer.style.bottom = (this.footerHeight + sidebarFooterHeight + off) + 'px';
+		this.sideMenuContainer.style.bottom = (this.footerHeight + off) + 'px';
+		this.rightSideMenuContainer.style.bottom = (this.footerHeight + off) + 'px';
 		this.formatContainer.style.bottom = (this.footerHeight + off) + 'px';
 		this.formatStyleContainer.style.bottom = (this.footerHeight + off) + 'px';
 		this.formatCommentContainer.style.bottom = (this.footerHeight + off) + 'px';
@@ -3330,8 +3332,8 @@ EditorUi.prototype.createDivs = function()
 	//  获取对右侧边导航的引用
 	this.rightSideMenuContainer = this.createDiv('geRightSideMenuContainer')
 	// 获取 右侧对应容器的 container
-	this.formatStyleContainer = this.createDiv('geFormatStyleContainer')
-	this.formatCommentContainer = this.createDiv('geFormatCommentContainer')	
+	this.formatStyleContainer = this.createDiv('geFormatStyleContainer geFormatContainer')
+	this.formatCommentContainer = this.createDiv('geFormatCommentContainer geFormatContainer')	
 	this.formatContainer = this.createDiv('geSidebarContainer geFormatContainer');
 	this.diagramContainer = this.createDiv('geDiagramContainer');
 	this.footerContainer = this.createDiv('geFooterContainer');

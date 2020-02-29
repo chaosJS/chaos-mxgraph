@@ -375,16 +375,20 @@ div.mxWindow .geButton {
   display: none;
 }
 .geRightSideMenuContainer{
+	display: flex;
+  align-items: center;
 	position: absolute;
-  overflow: auto;
+	overflow: hidden;
+	background-color: #fff;
+	border-left: 1px solid #dadce0;
 	bottom: 0;
 	z-index: 1;
+
 }
 .geRightSideMenuContainer > .rightNavMenu {
   list-style: none;
   padding: 20px 0;
 	margin: 0;
-	border-left: 1px solid #dadce0;
 }
 .geRightSideMenuContainer > .rightNavMenu > li {
 	padding: 10px 0;
@@ -402,7 +406,7 @@ div.mxWindow .geButton {
 }
 .geSideMenuContainer {
   position: absolute;
-  overflow: auto;
+  overflow: hidden;
   bottom: 0;
 }
 .geSideMenuContainer > .navMenu {

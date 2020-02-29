@@ -6,19 +6,22 @@ function SideNav(editorUi, container) {
       className: 'menuFolder',
       title: '文件夹',
       active: false,
-      linkedContainerClass: 'addDocContainer'
+      linkedContainerClass: 'addDocContainer',
+      iconSrc: '/images/svg/folder.svg'
     },
     {
       className: 'menuImg',
       title: '图片',
       active: false,
-      linkedContainerClass: 'addImgContainer'
+      linkedContainerClass: 'addImgContainer',
+      iconSrc: '/images/svg/image.svg'
     },
     {
       className: 'menuShape',
       title: '形状',
       active: true,
-      linkedContainerClass: 'sidebarContainer'
+      linkedContainerClass: 'sidebarContainer',
+      iconSrc: '/images/svg/shapes.svg'
     }
   ]
   this.init()
@@ -33,8 +36,13 @@ SideNav.prototype.addSideNavMenu = function() {
   menuList.style.cssText = 'background-color:#444b58;width: 50px;height:100%;'
   for (i = 0; i < this.menuConfig.length; i++) {
     var li = document.createElement('li')
-    li.innerText = this.menuConfig[i].title
     li.className = this.menuConfig[i].className
+    const imgSvg = document.createElement('img')
+    imgSvg.src = this.menuConfig[i].iconSrc
+    imgSvg.width = 25
+    li.appendChild(imgSvg)
+    li.classList.add('tooltip')
+    li.title = this.menuConfig[i].title
     this.menuConfig[i].active && li.classList.add('is-active')
     menuList.appendChild(li)
   }
@@ -44,6 +52,12 @@ SideNav.prototype.addSideNavMenu = function() {
     return this.editorUi[item.linkedContainerClass]
   })
   $(document).ready(() => {
+    $('.tooltip').tooltipster({
+      animation: 'fade',
+      delay: 200,
+      side: 'right',
+      theme: 'tooltipster-borderless'
+    })
     $('.navMenu').on('click', 'li', function(event) {
       $(this).addClass('is-active')
       $(this)
