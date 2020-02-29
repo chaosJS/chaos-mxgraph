@@ -7,21 +7,21 @@ function SideNav(editorUi, container) {
       title: '文件夹',
       active: false,
       linkedContainerClass: 'addDocContainer',
-      iconSrc: '/images/svg/folder.svg'
+      iconSrc: 'images/svg/folder.svg'
     },
     {
       className: 'menuImg',
       title: '图片',
       active: false,
       linkedContainerClass: 'addImgContainer',
-      iconSrc: '/images/svg/image.svg'
+      iconSrc: 'images/svg/image.svg'
     },
     {
       className: 'menuShape',
       title: '形状',
       active: true,
       linkedContainerClass: 'sidebarContainer',
-      iconSrc: '/images/svg/shapes.svg'
+      iconSrc: 'images/svg/shapes.svg'
     }
   ]
   this.init()

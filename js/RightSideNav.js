@@ -7,21 +7,21 @@ function RightSideNav(editorUi, container) {
       title: '信息',
       active: true,
       linkedContainerClass: 'formatContainer',
-      iconSrc: '/images/svg/info.svg'
+      iconSrc: 'images/svg/info.svg'
     },
     {
       className: 'menuStyle',
       title: '样式',
       active: false,
       linkedContainerClass: 'formatStyleContainer',
-      iconSrc: '/images/svg/styles.svg'
+      iconSrc: 'images/svg/styles.svg'
     },
     {
       className: 'menuComment',
       title: '评论',
       active: false,
       linkedContainerClass: 'formatCommentContainer',
-      iconSrc: '/images/svg/comments.svg'
+      iconSrc: 'images/svg/comments.svg'
     }
   ]
   this.init()
