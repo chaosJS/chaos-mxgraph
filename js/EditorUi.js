@@ -3188,6 +3188,7 @@ EditorUi.prototype.refresh = function(sizeDidChange)
 	}
 	
 	var effHsplitPosition = Math.max(0, Math.min(this.hsplitPosition, w - this.splitSize - 20));
+	console.log('effHsplitPosition::',effHsplitPosition)
 	var tmp = 0;
 	
 	if (this.menubar != null)
@@ -3228,15 +3229,14 @@ EditorUi.prototype.refresh = function(sizeDidChange)
   this.addDocContainer.style.width = effHsplitPosition + 'px'
 	this.formatContainer.style.top = tmp + 'px';
 	this.formatContainer.style.width = fw + 'px';
-	this.formatContainer.style.display = (this.format != null) ? '' : 'none';
-	
+	// this.formatContainer.style.display = (this.format != null) ? '' : 'none';
 	this.formatStyleContainer.style.top = tmp + 'px';
 	this.formatStyleContainer.style.width = fw + 'px';
-	this.formatStyleContainer.style.display = (this.format != null) ? '' : 'none';
+	// this.formatStyleContainer.style.display = (this.format != null) ? '' : 'none';
 
 	this.formatCommentContainer.style.top = tmp + 'px';
 	this.formatCommentContainer.style.width = fw + 'px';
-	this.formatCommentContainer.style.display = (this.format != null) ? '' : 'none';
+	// this.formatCommentContainer.style.display = (this.format != null) ? '' : 'none';
 
 	var diagContOffset = this.getDiagramContainerOffset();
 	var contLeft = (this.hsplit.parentNode != null) ? (effHsplitPosition + this.splitSize) : 0;
@@ -3322,7 +3322,7 @@ EditorUi.prototype.createDivs = function()
 {
 	this.menubarContainer = this.createDiv('geMenubarContainer');
 	this.toolbarContainer = this.createDiv('geToolbarContainer');
-	this.sidebarContainer = this.createDiv('geSidebarContainer');
+	this.sidebarContainer = this.createDiv('geSidebarContainer geLeftSidebarContainer');
 	//  获取对侧边导航的引用
 	this.sideMenuContainer = this.createDiv('geSideMenuContainer')
 

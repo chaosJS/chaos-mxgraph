@@ -2724,6 +2724,7 @@ mxGraphView.prototype.createHtml = function()
 			var onResize = mxUtils.bind(this, function(evt)
 			{
 				var bounds = this.getGraphBounds();
+				debugger
 				var width = bounds.x + bounds.width + this.graph.border;
 				var height = bounds.y + bounds.height + this.graph.border;
 				

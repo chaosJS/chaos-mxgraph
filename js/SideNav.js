@@ -51,6 +51,10 @@ SideNav.prototype.addSideNavMenu = function() {
   const menuPanelEl = this.menuConfig.map(item => {
     return this.editorUi[item.linkedContainerClass]
   })
+
+  let leftSidebarContainerShow = true
+  let DiagramContainerShow = true
+
   $(document).ready(() => {
     $('.tooltip').tooltipster({
       animation: 'fade',
@@ -59,6 +63,82 @@ SideNav.prototype.addSideNavMenu = function() {
       theme: 'tooltipster-borderless'
     })
     $('.navMenu').on('click', 'li', function(event) {
+      // geDiagramContainer left 到60px
+      // geHsplit left 到50px
+      // geSidebarContainer left 到 -162px
+      if ($(this).hasClass('is-active')) {
+        $('.geLeftSidebarContainer').animate(
+          {
+            left: `${leftSidebarContainerShow ? '-' : '+'}=${60}px`
+          },
+          'slow',
+          () => {
+            leftSidebarContainerShow = !leftSidebarContainerShow
+          }
+        )
+        $('.geHsplit').toggle('slow')
+        $('.geDiagramContainer').animate(
+          {
+            left: `${DiagramContainerShow ? '-' : '+'}=${220}px`
+          },
+          'slow',
+          () => {
+            DiagramContainerShow = !DiagramContainerShow
+          }
+        )
+      } else {
+        if (!leftSidebarContainerShow) {
+          $('.geHsplit').toggle('slow')
+
+          $('.geLeftSidebarContainer').animate(
+            {
+              left: `${leftSidebarContainerShow ? '-' : '+'}=${60}px`
+            },
+            'slow',
+            () => {
+              leftSidebarContainerShow = !leftSidebarContainerShow
+            }
+          )
+          $('.geDiagramContainer').animate(
+            {
+              left: `270px`
+            },
+            'slow',
+            () => {
+              leftSidebarContainerShow = !leftSidebarContainerShow
+            }
+          )
+        }
+      }
+
+      let originWidth = $('.geFormatContainer').width()
+      // if ($(this).hasClass('is-active')) {
+      //   // 已经选中
+      //   $('.geFormatContainer').toggle('slow')
+      //   $('.geRightSideMenuContainer').animate(
+      //     {
+      //       right: `${formatContainerShow ? '-' : '+'}=${originWidth}px`
+      //     },
+      //     'slow',
+      //     () => {
+      //       formatContainerShow = !formatContainerShow
+      //     }
+      //   )
+      //   $('.geDiagramContainer').css('right', '0px')
+      // } else {
+      //   if (!formatContainerShow) {
+      //     $('.geRightSideMenuContainer').animate(
+      //       {
+      //         right: `+=240px`
+      //       },
+      //       0,
+      //       () => {
+      //         formatContainerShow = !formatContainerShow
+      //       }
+      //     )
+      //   }
+      // }
+
       $(this).addClass('is-active')
       $(this)
         .siblings()
